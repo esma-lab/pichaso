@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>index</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #fff1f1;
+      color: #333;
+      overflow-x: hidden;
+      font-family: 'Cormorant Garamond', serif; /* Türkçe varsayılan */
+    }
+
+    body[dir="rtl"] {
+    font-family: 'Amiri', serif; /* Arapça aktif olunca */
+    }
+
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      color: #c5a552 !important;
+      letter-spacing: 1px;
+    }
+    .hero {
+      background: linear-gradient(to right, #fff, #f9f7f3);
+      padding: 100px 0px 0px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    .hero.visible {opacity: 1; transform: translateY(0);}
+    .btn-gold {
+      background-color: #c5a552;
+      color: #fff;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-gold:hover {
+      background-color: #b08b3c;
+      transform: scale(1.05);
+    }
+    .services {
+      padding: 10px 0;
+      background-color: #fffbf2;
+    }
+    .service-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    .service-card.visible {opacity: 1; transform: translateY(0);}
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .why-me {
+      background-color: #fffbf2;
+      padding: 10px 0;
+    }
+    .why-me i {
+      color: #c5a552;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .why-me .col-md-4 {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.7s ease;
+    }
+    .why-me .col-md-4.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    footer {
+      background-color: #fff;
+      padding: 60px 0;
+      text-align: center;
+      color: #666;
+      font-size: 1.0rem;
+      border-top: 1px solid #eee;
+    }
+    /* Yukarı dön & WhatsApp butonları */
+    #scrollTop, #whatsappBtn {
+      position: fixed;
+      bottom: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    #scrollTop {
+      right: 80px;
+      background: #c5a552;
+      opacity: 0;
+      visibility: hidden;
+    }
+    #scrollTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* About Section */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      background: linear-gradient(to top, #bbaa89, #f5efe6);
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .about-section img {
+      width: 320px;
+      border-radius: 15px;
+      margin: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .about-text {
+      max-width: 520px;
+      margin: 20px;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    #whatsappBtn {
+      right: 20px;
+      background: #25d366;
+    }
+    #whatsappBtn:hover {transform: scale(1.1);}
+    /* Arapça için RTL desteği */
+    [dir="rtl"] {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .example-card {
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      transition: transform .35s ease, box-shadow .35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .example-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+    .examples-section { background: linear-gradient(180deg,#fff 0%, #fffbf2 100%); padding-top:40px; padding-bottom:40px; }
+    @media (max-width:767px) { .examples-section { padding: 30px 15px; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a style="font-size: 25px;" class="navbar-brand" href="">Elit Tercüme</a>
+      <button class="btn btn-gold ms-3" id="langToggle">عربية</button>
+  </div>
+  
+</nav>
+
+    <!-- About -->
+  <section class="hero about-section" id="about">
+    <img src="foto.jpg" alt="Tercüman Fotoğrafı">
+    <div class="about-text" id="aboutText">
+        <h1 style="font-size: 35px;" id="heroTitle">Profesyonel Türkçe - Arapça Tercüman</h1>
+      <p style="font-size: 23px;" id="txt">Türkçe-Arapça arasında profesyonel tercüme ve dijital kimlik tasarımı hizmeti sunuyorum. Kalite, güven ve sadelik ilkelerimle markanızı bir adım öne taşıyorum.</p>
+    </div>
+  </section>
+
+<section class="hero" id="hero">
+  <div class="container">
+    <h1 id="baslik"></h1>
+    <h5 style="font-size: 25px;" id="heroText">Güvenilir, hızlı ve zarif hizmet. Diller arası köprünüz, dijital dünyadaki yüzünüz.</h5>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container text-center">
+    <h1 style="font-size: 38px;" class="hero mb-5" id="servicesTitle">Hizmetlerimiz</h1>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card service-card p-4">
+          <h4 style="font-size: 27px;" id="service1Title">Tercümanlık</h4>
+          <p style="font-size: 19px;" id="service1Text">Profesyonel Türkçe - Arapça çeviri hizmetleri, belgelere, sözlü görüşmelere ve kurumsal içeriklere yönelik özel çözümler sunmaktadır.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card service-card p-4">
+          <h4 style="font-size: 27px;" id="service2Title">Hazır Web Siteleri</h4>
+          <p style="font-size: 19px;" id="service2Text">Kurumsal ya da kişisel kullanım amacıyla tasarlanmış, şık, hızlı ve tamamen mobil uyumlu web siteleri ile online varlığınızı güçlendirin.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="why-me" id="why-me">
+  <div class="container text-center">
+    <h2 style="font-size: 38px;" class="hero mb-5" id="whyTitle">Neden Ben?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <i class="bi bi-lightning-charge"></i>
+        <h5 style="font-size: 27px;"  id="why1">Hızlı Teslim</h5>
+        <p style="font-size: 19px;" id="why1Text">İşinizi bekletmeden, tam zamanında teslim ederim.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-chat-heart"></i>
+        <h5 style="font-size: 27px;"  id="why2">Güvenilir İletişim</h5>
+        <p style="font-size: 19px;" id="why2Text">Her adımda net, saygılı ve profesyonel iletişim.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-star"></i>
+        <h5 style="font-size: 27px;"  id="why3">Modern & Lüks Görünüm</h5>
+        <p style="font-size: 19px;" id="why3Text">Tercüme de, web tasarımı da zarif bir dokunuşla yapılır.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class=" hero examples-section py-5" id="examples">
+  <div class="container">
+    <h2 style="font-size: 34px; text-align:center; margin-bottom:30px;" id="sitebaslik" >Örnek Web Siteleri</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card example-card p-4 h-100">
+          <h5 style="font-size: 27px;" id="avukatbaslik" class="card-title">Avukat Sitesi</h5>
+          <p style="font-size: 19px;" id="avukat" class="card-text">Kurumsal, modern ve minimal tasarımla hazırlanmış; dava portföyü, hizmetler ve hızlı iletişim formlarıyla odaklanmış avukat web sitesi.</p>
+          <a href="#" id="incelebtn" class="btn btn-gold mt-auto" data-bs-toggle="modal" data-bs-target="#comingSoonModal">İncele</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card example-card p-4 h-100">
+          <h5 style="font-size: 27px;" id="emlakbaslik" class="card-title">Emlak Sitesi</h5>
+          <p style="font-size: 19px;" id="emlak" class="card-text">Modern ve kullanıcı dostu tasarımla hazırlanmış; öne çıkan ilanlar, harita tabanlı arama, filtreleme seçenekleri ve hızlı iletişim formlarıyla odaklanmış emlak web sitesi.</p>
+          <a href="#" id="incelebtn2" class="btn btn-gold mt-auto" data-bs-toggle="modal" data-bs-target="#comingSoonModal">İncele</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card example-card p-4 h-100">
+          <h5 style="font-size: 27px;" id="doktorbaslik" class="card-title">Doktor Sitesi</h5>
+          <p style="font-size: 19px;" id="doktor" class="card-text">Temiz ve güven verici tasarımla hazırlanmış; hizmetler, uzmanlık alanları, hasta yorumları ve sağlık makaleleri ile bilgilendirici içerik sunmaya odaklanmış doktor web sitesi.</p>
+          <a href="#" id="incelebtn3" class="btn btn-gold mt-auto" data-bs-toggle="modal" data-bs-target="#comingSoonModal">İncele</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <p id="footerTextg" >hasnareda13@gmail.com</p>
+  <p id="footerTextl" >Yeşilkent mh. İstanbul/esenyurt</p>
+  <p id="footerText">© 2025 Elit Tercüman | Tüm Hakları Saklıdır.</p>
+</footer>
+
+<!-- Yukarı dön butonu -->
+<button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
+
+<!-- WhatsApp butonu -->
+<a id="whatsappBtn" href="https://wa.me/905555555555" target="_blank" title="WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- Coming Soon Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 style="font-size: 27px;" class="modal-title" id="modalTitle">Yakında Erişime Açılacak</h5>
+      </div>
+      <div style="font-size: 19px;" class="modal-body" id="modalBody">Bu site yakında erişime açılacaktır. Lütfen daha sonra tekrar kontrol edin.</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalBtn">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll reveal
+  const revealElements = document.querySelectorAll('.hero, .service-card, .why-me .col-md-4');
+  function revealOnScroll() {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+  // Yukarı dön butonu
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) scrollBtn.classList.add('show');
+    else scrollBtn.classList.remove('show');
+  });
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Dil geçişi
+  const langToggle = document.getElementById('langToggle');
+  const html = document.querySelector('html');
+
+  const translations = {
+    ar: {
+      txt: "أقدّم خدمات الترجمة الاحترافية بين التركية والعربية وتصميم الهوية الرقمية. أرفع علامتك التجارية إلى مستوى أعلى من خلال مبادئي في الجودة والثقة والبساطة.",
+      heroTitle: "مترجم تركي - عربي محترف",
+      heroText: "خدمة موثوقة وسريعة وأنيقة. جسر بين اللغات، ووجهك في العالم الرقمي.",
+      servicesTitle: "الخدمات",
+      service1Title: "الترجمة",
+      service1Text: "ترجمة احترافية بين التركية والعربية للمستندات والاجتماعات والمحتوى المؤسسي.",
+      service2Title: "مواقع جاهزة",
+      service2Text: "مواقع أنيقة وسريعة ومتوافقة مع الأجهزة المحمولة للأعمال أو الأفراد.",
+      whyTitle: "لماذا أنا؟",
+      why1: "تسليم سريع",
+      why1Text: "أنجز عملك في الوقت المحدد دون تأخير.",
+      why2: "تواصل موثوق",
+      why2Text: "تواصل واضح ومحترم في كل خطوة.",
+      why3: "مظهر فاخر وحديث",
+      why3Text: "الترجمة وتصميم الويب بلمسة أنيقة.",
+      sitebaslik: "نماذج مواقع الإنترنت",
+      avukatbaslik:"موقع محامٍ",
+      avukat:"تم إعداده بتصميم مؤسسي وحديث وبسيط؛ يركز على محفظة القضايا، الخدمات، ونماذج التواصل السريع.",
+      emlakbaslik:"موقع عقارات",
+      emlak:"تم إعداده بتصميم حديث وسهل الاستخدام؛ يركز على الإعلانات المميزة، البحث المعتمد على الخرائط، خيارات التصفية، ونماذج التواصل السريع.",
+      doktorbaslik:"موقع طبيب",
+      doktor:"تم إعداده بتصميم نظيف ويبعث على الثقة؛ يركز على تقديم محتوى معلوماتي يشمل الخدمات، مجالات التخصص، تقييمات المرضى، والمقالات الصحية.",
+      incelebtn:"استعرض",
+      incelebtn2:"استعرض",
+      incelebtn3:"استعرض",
+      footerText: "© 2025 Elit tercüme | جميع الحقوق محفوظة.",
+ 
+   },
+    tr: {
+      txt: "Türkçe-Arapça arasında profesyonel tercüme ve dijital kimlik tasarımı hizmeti sunuyorum. Kalite, güven ve sadelik ilkelerimle markanızı bir adım öne taşıyorum.",
+      heroTitle: "Profesyonel Türkçe - Arapça Tercüman",
+      heroText: "Güvenilir, hızlı ve zarif hizmet. Diller arası köprünüz, dijital dünyadaki yüzünüz.",
+      servicesTitle: "Hizmetler",
+      service1Title: "Tercümanlık",
+      service1Text: "Profesyonel Türkçe - Arapça çeviri, belgelere, sözlü görüşmelere ve kurumsal içeriklere özel çözümler.",
+      service2Title: "Hazır Web Siteleri",
+      service2Text: "Kurumsal veya kişisel kullanım için şık, hızlı ve mobil uyumlu web siteleri.",
+      whyTitle: "Neden Ben?",
+      why1: "Hızlı Teslim",
+      why1Text: "İşinizi bekletmeden, tam zamanında teslim ederim.",
+      why2: "Güvenilir İletişim",
+      why2Text: "Her adımda net, saygılı ve profesyonel iletişim.",
+      why3: "Modern & Lüks Görünüm",
+      why3Text: "Tercüme de, web tasarımı da zarif bir dokunuşla yapılır.",
+      sitebaslik:"Örnek Web siteleri",
+      avukatbaslik:"Avukat Sitesi",
+      avukat:"Kurumsal, modern ve minimal tasarımla hazırlanmış; dava portföyü, hizmetler ve hızlı iletişim formlarıyla odaklanmış avukat web sitesi.",
+      emlakbaslik:"Emlak Sitesi",
+      emlak:"Modern ve kullanıcı dostu tasarımla hazırlanmış; öne çıkan ilanlar, harita tabanlı arama, filtreleme seçenekleri ve hızlı iletişim formlarıyla odaklanmış emlak web sitesi.",
+      doktorbaslik:"Doktor Sitesi",
+      doktor:"Temiz ve güven verici tasarımla hazırlanmış; hizmetler, uzmanlık alanları, hasta yorumları ve sağlık makaleleri ile bilgilendirici içerik sunmaya odaklanmış doktor web sitesi.",
+      incelebtn:"incele",
+      incelebtn2:"incele",
+      incelebtn3:"incele",
+      footerText: "© 2025 Elit Tercüman | Tüm Hakları Saklıdır.",
+   }
+  };
+
+  let currentLang = 'tr';
+  langToggle.addEventListener('click', () => {
+    currentLang = currentLang === 'tr' ? 'ar' : 'tr';
+    const t = translations[currentLang];
+    for (const key in t) {
+      document.getElementById(key).innerText = t[key];
+    }
+    langToggle.innerText = currentLang === 'tr' ? 'AR' : 'TR';
+    html.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+  });
+
+  // Ek çeviri anahtarları (modal için)
+  translations.tr.modalTitle = "Yakında Erişime Açılacak";
+  translations.tr.modalBody = "Bu site yakında erişime açılacaktır. Lütfen daha sonra tekrar kontrol edin.";
+  translations.tr.modalBtn = "Kapat";
+
+  translations.ar.modalTitle = "سيتم الافتتاح قريبًا";
+  translations.ar.modalBody = "سيتم فتح هذا الموقع قريبًا. يرجى التحقق مرة أخرى لاحقًا.";
+  translations.ar.modalBtn = "إغلاق";
+
+  // İncele butonları modal açma
+  const comingModalEl = document.getElementById('comingSoonModal');
+  const comingModal = comingModalEl ? new bootstrap.Modal(comingModalEl) : null;
+  document.querySelectorAll('#examples .btn-gold').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!comingModal) return;
+      // Güncel dilde metinleri ayarla (varsa)
+      const t = translations[currentLang] || translations.tr;
+      const titleEl = document.getElementById('modalTitle');
+      const bodyEl = document.getElementById('modalBody');
+      const btnEl = document.getElementById('modalBtn');
+      if (titleEl) titleEl.innerText = t.modalTitle || translations.tr.modalTitle;
+      if (bodyEl) bodyEl.innerText = t.modalBody || translations.tr.modalBody;
+      if (btnEl) btnEl.innerText = t.modalBtn || translations.tr.modalBtn;
+      comingModal.show();
+    });
+  });
+</script>
+</body>
+</html>
+
