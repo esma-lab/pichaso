@@ -122,42 +122,43 @@
       visibility: visible;
     }
 
-    /* About Section */
-    .about-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 20px;
-      background: linear-gradient(to top, #bbaa89, #f5efe6);
-      border-top: 1px solid rgba(0,0,0,0.05);
-    }
+/* About Section */
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+  background: linear-gradient(to top, #bbaa89, #f5efe6);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  text-align: center; /* mobilde hizalama için önemli */
+}
 
-    .about-section img {
-      width: 320px;
-      border-radius: 15px;
-      margin: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+.about-section img {
+  width: 320px;
+  border-radius: 15px;
+  margin: 20px auto; /* ortalanması garantilensin */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
-    .about-text {
-      max-width: 520px;
-      margin: 20px;
-      font-size: 1.1rem;
-      color: #444;
-      line-height: 1.7;
-    }
+.about-text {
+  max-width: 520px;
+  margin: 20px auto; /* mobilde tam ortaya çeker */
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.7;
+  text-align: center; /* mobilde yazıyı ortalar */
+}
 
-    @media (max-width: 768px) {
-      .about-section {
-        flex-direction: column;
-        text-align: center;
-      }
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+  }
 
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-    }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}
 
     #whatsappBtn {
       right: 20px;
@@ -294,7 +295,7 @@
 <button id="scrollTop"><i class="bi bi-arrow-up"></i></button>
 
 <!-- WhatsApp butonu -->
-<a id="whatsappBtn" href="https://wa.me/905555555555" target="_blank" title="WhatsApp">
+<a id="whatsappBtn" href="https://wa.me/905418624569" target="_blank" title="WhatsApp">
   <i class="bi bi-whatsapp"></i>
 </a>
 
